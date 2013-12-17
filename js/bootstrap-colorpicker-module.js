@@ -232,7 +232,8 @@ angular.module('colorpicker.module', [])
 
         var thisFormat = attrs.colorpicker ? attrs.colorpicker : 'hex';
         var position = attrs.colorpickerPosition ? attrs.colorpickerPosition : 'bottom';
-        var target = attrs.colorpickerTarget ? (attrs.colorpickerTarget === 'parent' ? elem.parent() : angular.element(attrs.colorpickerTarget)) : angular.element(document.body);
+        var targetIsParent = attrs.colorpickerTarget === 'parent';
+        var target = attrs.colorpickerTarget ? (targetIsParent ? elem.parent() : angular.element(attrs.colorpickerTarget)) : angular.element(document.body);
 
 
         $compile(colorpickerTemplate)($scope);
@@ -410,8 +411,11 @@ angular.module('colorpicker.module', [])
         elem.bind('click', function () {
           update();
           colorpickerTemplate
-            .addClass('colorpicker-visible')
-            .css(getColorpickerTemplatePosition());
+            .addClass('colorpicker-visible');
+
+          if (!targetIsParent) {
+            colorpickerTemplate.css(getColorpickerTemplatePosition());
+          }
         });
 
         colorpickerTemplate.bind('mousedown', function (event) {

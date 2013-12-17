@@ -55,7 +55,10 @@ describe('colorpicker module', function () {
         element = $compile('<div><input colorpicker colorpicker-target="parent" ng-model="picker.color" type="text" value="" /></div>')(scope);
         scope.$digest();
       });
-      expect($(element).find('.colorpicker').length).toBe(1);
+      var $element = $(element);
+      expect($element.css('top')).toBe('');
+      expect($element.css('left')).toBe('');
+      expect($element.find('.colorpicker').length).toBe(1);
       element.remove();
       expect($(document).find('.colorpicker').length).toBe(0);
     });
