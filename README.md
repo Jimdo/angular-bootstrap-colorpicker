@@ -47,3 +47,14 @@ Position of the colorpicker (top, right, bottom, left).
 ```html
 <input colorpicker colorpicker-position="right" class="span2" type="text" ng-model="your_model" />
 ```
+
+Define position of the colorpicker element in the DOM (default is `document.body`).
+There is a special value `parent` which allows you to inject the color picker into the parent element containing the directive.
+Anything else is treated as a DOM selector.
+```html
+<!-- add to parent element, e.g. as a sibling to this element -->
+<input colorpicker colorpicker-target="parent" type="text" ng-model="your_model" />
+
+<!-- add to element with id="my-id" -->
+<input colorpicker colorpicker-target="#my-id" type="text" ng-model="your_model" />
+```
